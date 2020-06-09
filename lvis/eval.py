@@ -461,9 +461,10 @@ class LVISEval:
         self.results["APs"]  = self._summarize('ap', area_rng="small")
         self.results["APm"]  = self._summarize('ap', area_rng="medium")
         self.results["APl"]  = self._summarize('ap', area_rng="large")
-        self.results["APr"]  = self._summarize('ap', freq_group_idx=0)
-        self.results["APc"]  = self._summarize('ap', freq_group_idx=1)
-        self.results["APf"]  = self._summarize('ap', freq_group_idx=2)
+        if self.params.use_cats:
+            self.results["APr"]  = self._summarize('ap', freq_group_idx=0)
+            self.results["APc"]  = self._summarize('ap', freq_group_idx=1)
+            self.results["APf"]  = self._summarize('ap', freq_group_idx=2)
 
         key = "AR@{}".format(max_dets)
         self.results[key] = self._summarize('ar')
